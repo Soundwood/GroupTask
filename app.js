@@ -6,7 +6,6 @@ require('dotenv/config');
 
 const app = express()
 
-mongoose.connect()
 app.use(cors())
 app.use(bodyParser.json())
 
