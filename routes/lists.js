@@ -28,7 +28,7 @@ listsRouter.get('/:id', async (req, res) => {
         const foundList = await List.findById(req.params.id)
         res.json(foundList)
     } catch (err) {
-
+        res.json({ message: err })
     }
 })
 
