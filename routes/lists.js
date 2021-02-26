@@ -32,4 +32,24 @@ listsRouter.get('/:id', async (req, res) => {
     }
 })
 
+listsRouter.delete('/:id', async (req, res) => {
+    try {
+        const removedList = await List.remove({_id: req.params.id})
+        res.json(removedList)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
+listsRouter.patch('/:id', async (req, res) => {
+    try {
+        const updatedList = await List.updateOne(
+            { _id: req.params.id },
+            { $set: { name: req.body.name }})
+        res.json(updatedList)
+    } catch (err) {
+        res.json({ message: err })
+    }
+})
+
 module.exports = listsRouter;
