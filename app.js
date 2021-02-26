@@ -24,9 +24,19 @@ app.get('/', (req, res, next) => {
 // app.delete()
 
 // Connect mongoDB
-mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true  }, () => {
-	console.log("Connected to DB")
-})
+const url = process.env.DB_CONNECTION
+const connectionParams = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+}
+mongoose.connect(url, connectionParams)
+    .then( () => {
+        console.log('Connected to DB')
+    })
+    .catch( () => {
+        console.error(`Error connecting to the DB. \n${err}`)
+    })
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`listening on PORT: ${port}`))
