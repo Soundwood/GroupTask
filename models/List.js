@@ -6,11 +6,14 @@ const ListSchema = mongoose.Schema({
         type: String,
         required: '{PATH} is required!'
     }, 
-    // active: {
-    //     type: Boolean,
-    //     required: true, 
-    //     default: true
-    // } 
+    active: {
+        type: Boolean,
+        required: true, 
+        default: true
+    },
+    tasks: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Task' }
+      ] 
 }, {
     timestamps: true
 });

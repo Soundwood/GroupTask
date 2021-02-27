@@ -4,7 +4,7 @@ const List = require('../models/List')
 
  listsRouter.get('/', async (req, res, next) => {
     try {
-        const lists = await List.find()
+        const lists = await List.find().populate('tasks')
         res.json(lists)
     } catch (err) {
         res.json({ message: err })
@@ -25,7 +25,7 @@ listsRouter.post('/', async (req, res) => {
 
 listsRouter.get('/:id', async (req, res) => {
     try {
-        const foundList = await List.findById(req.params.id)
+        const foundList = await List.findById(req.params.id).populate('tasks')
         res.json(foundList)
     } catch (err) {
         res.json({ message: err })
